@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import pt.programandocomandre.contactagenda.databinding.RecycleviewListitemContactBinding
 import pt.programandocomandre.contactagenda.models.Contact
 
-class UserRecylerViewAdapter(private val mList: MutableList<Contact>, val context: Context): RecyclerView.Adapter<UserRecylerViewAdapter.ViewHolder>() {
+class ContactsRecylerViewAdapter(private val mList: List<Contact>, val context: Context): RecyclerView.Adapter<ContactsRecylerViewAdapter.ViewHolder>() {
     inner class ViewHolder(val viewBinding: RecycleviewListitemContactBinding): RecyclerView.ViewHolder(viewBinding.root) {
         fun bindData(contact: Contact)
         {

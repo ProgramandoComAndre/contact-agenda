@@ -4,10 +4,13 @@ import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pt.programandocomandre.contactagenda.ContactsDatabase
 import pt.programandocomandre.contactagenda.R
+import pt.programandocomandre.contactagenda.adapters.ContactsRecylerViewAdapter
 import pt.programandocomandre.contactagenda.daos.ContactDao
 import pt.programandocomandre.contactagenda.databinding.ActivityMainBinding
 import pt.programandocomandre.contactagenda.models.Contact
@@ -20,10 +23,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            contactDao.insertContact(Contact(0, "Andre", "andrerafael112@gmail.com", "123456789"))
+        viewBinding.mainContactListRv.layoutManager = LinearLayoutManager(this).apply {
+            this.orientation= LinearLayoutManager.VERTICAL
         }
+
+
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var contactList:List<Contact> = mutableListOf()
+        lifecycleScope.launch {
+            contactList = withContext(Dispatchers.IO) {
+                contactDao.getAllContacts()
+            }
+
+            runOnUiThread {
+
+                viewBinding.mainContactListRv.adapter = ContactsRecylerViewAdapter(contactList, this@MainActivity)
+            }
+
+
+        }
+
+
+
 
     }
 }
