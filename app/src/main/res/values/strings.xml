@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="label_name">Name:</string>
+    <string name="phone_label">Phone</string>
+    <string name="email_label">Email:</string>
+    <string name="example_email">example@example.com</string>
 </resources>
