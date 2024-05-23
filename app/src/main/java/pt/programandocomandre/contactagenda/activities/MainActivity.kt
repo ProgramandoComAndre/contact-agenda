@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             runOnUiThread {
-
-                viewBinding.mainContactListRv.adapter = ContactsRecylerViewAdapter(contactList, this@MainActivity)
+                viewBinding.mainContactListRv.adapter =
+                    ContactsRecylerViewAdapter(contactList, this@MainActivity)
             }
 
 
