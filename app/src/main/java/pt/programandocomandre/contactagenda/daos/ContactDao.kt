@@ -2,12 +2,16 @@ package pt.programandocomandre.contactagenda.daos
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import pt.programandocomandre.contactagenda.models.Contact
 
 @Dao
 interface ContactDao{
+
+    @Insert
+    fun insertContact(vararg contact: Contact)
     @Query("SELECT * FROM contacts")
     fun getAllContacts(): List<Contact>
 
