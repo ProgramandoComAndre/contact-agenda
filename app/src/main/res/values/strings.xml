@@ -4,4 +4,8 @@
     <string name="phone_label">Phone</string>
     <string name="email_label">Email:</string>
     <string name="example_email">example@example.com</string>
+    <string name="create_contact_name_hint">Name</string>
+    <string name="create_contact_email_hint">Email</string>
+    <string name="add_contact_activity_title">Add Contact</string>
+    <string name="phone_number_hint">Phone Number</string>
 </resources>

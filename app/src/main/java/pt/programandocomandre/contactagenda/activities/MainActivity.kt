@@ -1,6 +1,12 @@
 package pt.programandocomandre.contactagenda.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -14,11 +20,16 @@ import pt.programandocomandre.contactagenda.adapters.ContactsRecylerViewAdapter
 import pt.programandocomandre.contactagenda.daos.ContactDao
 import pt.programandocomandre.contactagenda.databinding.ActivityMainBinding
 import pt.programandocomandre.contactagenda.models.Contact
+import pt.programandocomandre.contactagenda.services.ContactService
 
 class MainActivity : AppCompatActivity() {
 
     val viewBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    val contactDao by lazy { ContactsDatabase.getDatabase(applicationContext).contactsDao() }
+    val registerActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if(it.resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "Contact inserted successfully", Toast.LENGTH_LONG).show()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
@@ -27,9 +38,9 @@ class MainActivity : AppCompatActivity() {
             this.orientation= LinearLayoutManager.VERTICAL
         }
 
-
-
-
+        viewBinding.mainAddContactBtn.setOnClickListener {
+            registerActivityResultLauncher.launch(Intent(this, CreateContactActivity::class.java))
+        }
     }
 
     override fun onResume() {
@@ -37,15 +48,13 @@ class MainActivity : AppCompatActivity() {
         var contactList:List<Contact> = mutableListOf()
         lifecycleScope.launch {
             contactList = withContext(Dispatchers.IO) {
-                contactDao.getAllContacts()
+                ContactService.provideService().listContacts()
             }
 
             runOnUiThread {
                 viewBinding.mainContactListRv.adapter =
                     ContactsRecylerViewAdapter(contactList, this@MainActivity)
             }
-
-
         }
 
 
