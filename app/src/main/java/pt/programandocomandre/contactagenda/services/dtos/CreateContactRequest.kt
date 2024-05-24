@@ -6,7 +6,7 @@ import pt.programandocomandre.contactagenda.services.errors.InvalidEmailExceptio
 import pt.programandocomandre.contactagenda.services.errors.InvalidPhoneNumber
 import pt.programandocomandre.contactagenda.services.errors.NameNotFilledException
 
-data class CreateContactRequest(val name: String, val email: String? = null, val phoneNumber: String?=null) {
+open class CreateContactRequest(val name: String, val email: String? = null, val phoneNumber: String?=null) {
     init {
         if(name.length == 0) {
             throw NameNotFilledException()

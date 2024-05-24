@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CreateContactActivity">
+    tools:context=".activities.EditContactActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/add_contact_activity_title"
+            android:text="@string/edit_contact_title"
             android:textSize="35sp"
             android:textStyle="bold">
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:inputType="textPersonName"
-                android:id="@+id/addContact_name_et"
+                android:id="@+id/editContact_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:inputType="textEmailAddress"
-                android:id="@+id/addContact_emailAddress_et"
+                android:id="@+id/editContact_emailAddress_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:inputType="phone"
-                android:id="@+id/addContact_phoneNumber_et"
+                android:id="@+id/editContact_phoneNumber_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
@@ -70,13 +70,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/addContact_addContact_btn"
+            android:id="@+id/editContact_addContact_btn"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="18dp"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
             android:textSize="18sp"
             app:backgroundTint="#008800"
-            android:text="@string/add_contact_activity_title"></com.google.android.material.button.MaterialButton>
+            android:text="@string/edit_contact_title"></com.google.android.material.button.MaterialButton>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

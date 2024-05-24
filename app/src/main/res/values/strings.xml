@@ -8,4 +8,5 @@
     <string name="create_contact_email_hint">Email</string>
     <string name="add_contact_activity_title">Add Contact</string>
     <string name="phone_number_hint">Phone Number</string>
+    <string name="edit_contact_title">Edit Contact</string>
 </resources>

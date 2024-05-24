@@ -1,14 +1,34 @@
 package pt.programandocomandre.contactagenda.services
 
+import android.util.Log
 import pt.programandocomandre.contactagenda.daos.ContactDao
 import pt.programandocomandre.contactagenda.models.Contact
 import pt.programandocomandre.contactagenda.services.dtos.CreateContactRequest
+import pt.programandocomandre.contactagenda.services.dtos.EditContactRequest
 
 class ContactService(val contactDao: ContactDao) {
     fun listContacts(): List<Contact> {
 
 
         return contactDao.getAllContacts()
+    }
+
+    fun deleteContact(contact: Contact): Boolean {
+
+        return try {
+            contactDao.deleteContact(contact)
+            true
+        } catch(ex: Exception) {
+            Log.e("deleteContact", ex.message, ex)
+            false
+        }
+    }
+
+    fun editContact(request: EditContactRequest, contact: Contact) {
+        contact.email = request.email
+        contact.name = request.name
+        contact.phoneNumber = request.phoneNumber
+        contactDao.updateContacts(contact)
     }
 
     fun createContact(createContactRequest: CreateContactRequest): Contact {
